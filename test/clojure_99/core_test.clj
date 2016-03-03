@@ -2,7 +2,7 @@
   (:require [clojure.test :refer :all]
             [clojure-99.core :refer :all]))
 
-(deftest P01
+(deftest p01
   "Find the last element of a list."
   (testing "my-last"
     (is (= 7 (my-last '(1 2 4 98 7))))
@@ -16,3 +16,10 @@
     (is (= 7 (last '(1 2 4 98 7))))
     (is (= 3 (last '(3))))
     (nil? (last '()))))
+
+(deftest p02
+  "Find the last 2 elements of a list."
+  (testing "my-but-last"
+    (is (= '(98 7) (my-but-last '(1 2 4 98 7))))
+    (is (= '(3) (my-but-last '(3))))
+    (nil? (my-but-last '()))))

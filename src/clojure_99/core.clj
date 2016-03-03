@@ -11,3 +11,8 @@
   "Find the last element of a list."
   [l]
   (first (reverse l)))
+
+(defn my-but-last
+  "Find the last 2 elements of a list."
+  [l]
+  (take-last 2 l))
