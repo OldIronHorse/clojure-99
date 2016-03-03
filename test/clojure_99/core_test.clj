@@ -23,3 +23,25 @@
     (is (= '(98 7) (my-but-last '(1 2 4 98 7))))
     (is (= '(3) (my-but-last '(3))))
     (nil? (my-but-last '()))))
+
+(deftest p03
+  "Find the kth element of a list"
+  (testing "element-at"
+    (is (= 4 (element-at 3 '(1 2 4 98 7))))
+    (is (= nil (element-at 3 '(1 2))))
+    (is (= nil (element-at 3 '())))
+    (is (= nil (element-at 10 '(1 2 4 98 7))))))
+
+(deftest p04
+  "Find the number of elements in a list."
+  (testing "my-count"
+    (is (= 5 (my-count '(1 2 4 98 7))))
+    (is (= 2 (my-count '(1 2))))
+    (is (= 1 (my-count '(2))))
+    (is (= 0 (my-count '()))))
+  (testing "count"
+    (is (= 5 (count '(1 2 4 98 7))))
+    (is (= 2 (count '(1 2))))
+    (is (= 1 (count '(2))))
+    (is (= 0 (count '())))))
+    

@@ -16,3 +16,13 @@
   "Find the last 2 elements of a list."
   [l]
   (take-last 2 l))
+
+(defn element-at
+  "Find the kth element of a list."
+  [k l]
+  (first (drop (- k 1) l)))
+
+(defn my-count
+  "Find the number of elements in a list"
+  [l]
+  nil)
