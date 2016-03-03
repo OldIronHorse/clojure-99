@@ -1,6 +1,13 @@
 (ns clojure-99.core)
 
-(defn foo
-  "I don't do a whole lot."
-  [x]
-  (println x "Hello, World!"))
+(defn my-last
+  "Find the last element of a list."
+  [l]
+  (if (seq (rest l))
+    (recur (rest l))
+    (first l)))
+
+(defn r-last
+  "Find the last element of a list."
+  [l]
+  (first (reverse l)))
