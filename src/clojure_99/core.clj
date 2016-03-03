@@ -25,4 +25,11 @@
 (defn my-count
   "Find the number of elements in a list"
   [l]
-  nil)
+  (loop
+    [c 0
+     l' l]
+    (if
+      (nil? (first l'))
+      c
+      (recur (+ c 1) (rest l')))))
+
