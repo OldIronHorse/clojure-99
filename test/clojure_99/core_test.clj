@@ -45,3 +45,21 @@
     (is (= 1 (count '(2))))
     (is (= 0 (count '())))))
     
+
+(deftest p05
+  "Reverse a list"
+  (testing "reverse"
+    (is (= '() (reverse '())))
+    (is (= '(5) (reverse '(5))))
+    (is (= '(2 1) (reverse '(1 2))))
+    (is (= '(3 2 1) (reverse '(1 2 3)))))
+  (testing "r-reverse")
+    (is (= '() (r-reverse '())))
+    (is (= '(5) (r-reverse '(5))))
+    (is (= '(2 1) (r-reverse '(1 2))))
+    (is (= '(3 2 1) (r-reverse '(1 2 3))))
+  (testing "f-reverse")
+    (is (= '() (f-reverse '())))
+    (is (= '(5) (f-reverse '(5))))
+    (is (= '(2 1) (f-reverse '(1 2))))
+    (is (= '(3 2 1) (f-reverse '(1 2 3)))))

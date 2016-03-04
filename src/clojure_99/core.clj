@@ -33,3 +33,18 @@
       c
       (recur (+ c 1) (rest l')))))
 
+(defn r-reverse
+  "Reverse a list (recursive implementation)."
+  [l]
+  (loop
+    [l' l
+     rl '()]
+    (if 
+      (empty? l')
+      rl
+      (recur (rest l') (cons (first l') rl)))))
+
+(defn f-reverse
+  "Reverse a list (functional implementation)."
+  [l]
+  (reduce (fn [acc x] (cons x acc)) '() l))
