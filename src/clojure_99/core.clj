@@ -122,3 +122,26 @@
         (recur (rest l') acc)
         (recur (rest l') (cons (first l') acc))))))
 
+(defn f-dedupe
+  "Remove consecutive duplicates from a list (functional impementation)."
+  [l]
+  (reverse
+    (reduce
+      (fn [acc x] (if (= x (first acc)) acc (cons x acc)))
+      '()
+      l)))
+
+(defn r-pack
+  "Pack consecutive duplicates into sublists (recursive implementation)."
+  [l]
+  (loop
+    [l' l
+     acc '()
+     curr '()]
+    (if
+      (empty? l')
+      (reverse acc)
+      (if
+        (= (first l') (first curr))
+        (recur (rest l') acc (cons (first l') curr))
+        (recur (rest l') (cons curr acc) (list (first l')))))))
