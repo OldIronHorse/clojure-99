@@ -194,5 +194,15 @@
     (is (= '() (rl-encode '())))
     (is (= '((1 \a)) (rl-encode '(\a))))
     (is (= 
-      '((4 \a) (1 \b) (2 \c) (2 \a) (1 \d)(4 \e))
+      '((4 \a) (1 \b) (2 \c) (2 \a) (1 \d) (4 \e))
       (rl-encode '(\a \a \a \a \b \c \c \a \a \d \e \e \e \e))))))
+
+(deftest p11
+  "Modified run-length encode a list."
+  (testing "mrl-encode"
+    (is (= '() (mrl-encode '())))
+    (is (= '(\a) (mrl-encode '(\a))))
+    (is (= 
+      '((4 \a) \b (2 \c) (2 \a) \d (4 \e))
+      (mrl-encode '(\a \a \a \a \b \c \c \a \a \d \e \e \e \e))))))
+      

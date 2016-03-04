@@ -162,3 +162,8 @@
   "Run-length encode a list."
   [l]
   (map #(list (count %1) (first %1)) (f-pack l)))
+
+(defn mrl-encode
+  "Modified run-length encode a list/"
+  [l]
+  (map (fn [[n x]] (if (= 1 n) x (list n x))) (rl-encode l)))
