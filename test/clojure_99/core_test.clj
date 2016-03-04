@@ -223,4 +223,11 @@
     (is (= 
       '((4 \a) \b (2 \c) (2 \a) \d (4 \e))
       (dmrl-encode '(\a \a \a \a \b \c \c \a \a \d \e \e \e \e))))))
+
+(deftest p14
+  "Duplicate the elements in a list."
+  (testing "duplicate"
+    (is (= '() (duplicate '())))
+    (is (= '(1 1) (duplicate '(1))))
+    (is (= '(1 1 2 2 3 3 4 4) (duplicate '(1 2 3 4))))))
       

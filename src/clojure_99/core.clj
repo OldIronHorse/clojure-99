@@ -188,3 +188,8 @@
             (cons (list 1 x) acc)))
         '()
         l))))
+
+(defn duplicate
+  "Duplicate the elements in a list."
+  [l]
+  (reduce (fn [acc x] (concat acc (repeat 2 x))) '() l))
