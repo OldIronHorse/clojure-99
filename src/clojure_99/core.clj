@@ -136,12 +136,24 @@
   [l]
   (loop
     [l' l
-     acc '()
-     curr '()]
+     acc '()]
     (if
       (empty? l')
       (reverse acc)
       (if
-        (= (first l') (first curr))
-        (recur (rest l') acc (cons (first l') curr))
-        (recur (rest l') (cons curr acc) (list (first l')))))))
+        (= (first l') (first (first acc)))
+        (recur (rest l') (cons (cons (first l') (first acc)) (rest acc))) 
+        (recur (rest l') (cons (list (first l')) acc))))))
+
+(defn f-pack
+  "Pack consecutive duplicates into sublists (functional implementation)."
+  [l]
+  (reverse
+    (reduce
+      (fn [acc x]
+        (if 
+          (= (first (first acc)) x)
+          (cons (cons x (first acc)) (rest acc))
+          (cons (list x) acc)))
+      '()
+      l)))
