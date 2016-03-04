@@ -48,3 +48,30 @@
   "Reverse a list (functional implementation)."
   [l]
   (reduce (fn [acc x] (cons x acc)) '() l))
+
+(defn palindrome?
+  "Test if a list is a palindrome."
+  [l]
+  (= l (reverse l)))
+
+(defn r-palindrome?
+  "Test if a list is a palindrome (recursive implementation)."
+  [l]
+  (if
+    (empty? l)
+    true
+    (if
+      (= (first l) (last l))
+      (recur (drop-last (rest l)))
+      false)))
+
+(defn f-palindrome?
+  "Test if a list is a palindrome (functional implementation)."
+  [l]
+  (let
+    [[front back] (split-at (/ (count l) 2) l)
+     zl (map vector front (reverse back))]
+    (empty?
+      (drop-while
+        (fn [[a b]] (= a b))
+        zl))))

@@ -89,4 +89,4 @@
     (is (f-palindrome? '(1 2 1)))
     (is (not (f-palindrome? '(1 2))))
     (is (not (f-palindrome? '(1 1 2))))
-    (is (not (f-palindrome? '(1 2 3 1)))))
+    (is (not (f-palindrome? '(1 2 3 1))))))
