@@ -20,7 +20,7 @@
 (defn element-at
   "Find the kth element of a list."
   [k l]
-  (first (drop (- k 1) l)))
+  (first (drop (dec k) l)))
 
 (defn my-count
   "Find the number of elements in a list"
@@ -31,7 +31,7 @@
     (if
       (nil? (first l'))
       c
-      (recur (+ c 1) (rest l')))))
+      (recur (inc c) (rest l')))))
 
 (defn r-reverse
   "Reverse a list (recursive implementation)."
@@ -39,7 +39,7 @@
   (loop
     [l' l
      rl '()]
-    (if 
+    (if
       (empty? l')
       rl
       (recur (rest l') (cons (first l') rl)))))
@@ -76,21 +76,34 @@
         (fn [[a b]] (= a b))
         zl))))
 
-(defn do-flatten
+(defn do-r-flatten
   [l fl]
   (if
     (empty? l)
     fl
     (if
       (seq? (first l))
-      (recur (rest l) (concat (do-flatten (first l) fl)))
+      (recur (rest l) (concat (do-r-flatten (first l) fl)))
       (recur (rest l) (cons (first l) fl)))))
 
 (defn r-flatten
+  "Flatten a nested list (recursive implementation)."
   [l]
-  (reverse (do-flatten l '())))
+  (reverse (do-r-flatten l '())))
+
+(defn do-f-flatten
+  [l]
+  (reduce
+    (fn
+      [fl x]
+      (if
+        (seq? x)
+        (concat (do-f-flatten x) fl)
+        (cons x fl)))
+    '()
+    l))
 
 (defn f-flatten
+  "Flatten a nested list (functional implementation)."
   [l]
-  ;(reduce (fn [fl x]
-  l)
+  (reverse (do-f-flatten l)))
