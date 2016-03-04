@@ -75,3 +75,22 @@
       (drop-while
         (fn [[a b]] (= a b))
         zl))))
+
+(defn do-flatten
+  [l fl]
+  (if
+    (empty? l)
+    fl
+    (if
+      (seq? (first l))
+      (recur (rest l) (concat (do-flatten (first l) fl)))
+      (recur (rest l) (cons (first l) fl)))))
+
+(defn r-flatten
+  [l]
+  (reverse (do-flatten l '())))
+
+(defn f-flatten
+  [l]
+  ;(reduce (fn [fl x]
+  l)
