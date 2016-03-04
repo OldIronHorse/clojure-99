@@ -141,7 +141,7 @@
       (empty? l')
       (reverse acc)
       (if
-        (= (first l') (first (first acc)))
+        (= (first l') (ffirst acc))
         (recur (rest l') (cons (cons (first l') (first acc)) (rest acc))) 
         (recur (rest l') (cons (list (first l')) acc))))))
 
@@ -152,7 +152,7 @@
     (reduce
       (fn [acc x]
         (if 
-          (= (first (first acc)) x)
+          (= (ffirst acc) x)
           (cons (cons x (first acc)) (rest acc))
           (cons (list x) acc)))
       '()
@@ -167,3 +167,9 @@
   "Modified run-length encode a list/"
   [l]
   (map (fn [[n x]] (if (= 1 n) x (list n x))) (rl-encode l)))
+
+(defn mrl-decode
+  "Decode a modified run-length encoded list."
+  [l]
+  (flatten
+    (map #(if (seq? %1) (repeat (first %1) (last %1)) %1) l)))
