@@ -177,12 +177,14 @@
 (defn dmrl-encode
   "Directly modified run-length encode a list."
   [l]
-  (reverse
-    (reduce
-      (fn [acc x]
-        (if 
-          (= x (last (first acc)))
-          (cons (list (inc (ffirst acc)) x) (rest acc))
-          (cons (list 1 x) acc)))
-      '()
-      l)))
+  (map
+    (fn [[n x]] (if (= 1 n) x (list n x)))
+    (reverse
+      (reduce
+        (fn [acc x]
+          (if 
+            (= x (last (first acc)))
+            (cons (list (inc (ffirst acc)) x) (rest acc))
+            (cons (list 1 x) acc)))
+        '()
+        l))))
