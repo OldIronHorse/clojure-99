@@ -63,3 +63,30 @@
     (is (= '(5) (f-reverse '(5))))
     (is (= '(2 1) (f-reverse '(1 2))))
     (is (= '(3 2 1) (f-reverse '(1 2 3)))))
+
+(deftest p06
+  "Test for a palindrome"
+  (testing "palindrome?"
+    (is (palindrome? '()))
+    (is (palindrome? '(1)))
+    (is (palindrome? '(1 1)))
+    (is (palindrome? '(1 2 1)))
+    (is (not (palindrome? '(1 2))))
+    (is (not (palindrome? '(1 1 2))))
+    (is (not (palindrome? '(1 2 3 1)))))
+  (testing "r-palindrome?"
+    (is (r-palindrome? '()))
+    (is (r-palindrome? '(1)))
+    (is (r-palindrome? '(1 1)))
+    (is (r-palindrome? '(1 2 1)))
+    (is (not (r-palindrome? '(1 2))))
+    (is (not (r-palindrome? '(1 1 2))))
+    (is (not (r-palindrome? '(1 2 3 1)))))
+  (testing "f-palindrome?"
+    (is (f-palindrome? '()))
+    (is (f-palindrome? '(1)))
+    (is (f-palindrome? '(1 1)))
+    (is (f-palindrome? '(1 2 1)))
+    (is (not (f-palindrome? '(1 2))))
+    (is (not (f-palindrome? '(1 1 2))))
+    (is (not (f-palindrome? '(1 2 3 1)))))
