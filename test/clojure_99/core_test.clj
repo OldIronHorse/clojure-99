@@ -128,3 +128,20 @@
     (is (= '(1 2 3 4) (f-flatten '((1 2 3) 4))))
     (is (= '(1 2 3 4) (f-flatten '(1 (2 (3 4))))))
     (is (= '(1 2 3 4) (f-flatten '(1 ((2 3) 4)))))))
+
+(deftest p08
+  "Eliminate consecutive duplicates"
+  (testing "dedupe"
+    (is (= '() (dedupe '())))
+    (is (= '(1 2 4 3 2 6) (dedupe '(1 2 4 3 2 6))))
+    (is (= '(1 2 4 3 2 6) (dedupe '(1 2 2 2 4 3 2 6))))
+    (is (= '(1 2 4 3 2 6) (dedupe '(1 2 2 2 4 3 2 2 6))))
+    (is (= '(1 2 4 3 2 6) (dedupe '(1 1 2 2 4 3 2 6))))
+    (is (= '(1 2 4 3 2 6) (dedupe '(1 2 4 3 3 2 6 6 6)))))
+  (testing "r-dedupe"
+    (is (= '() (r-dedupe '())))
+    (is (= '(1 2 4 3 2 6) (r-dedupe '(1 2 4 3 2 6))))
+    (is (= '(1 2 4 3 2 6) (r-dedupe '(1 2 2 2 4 3 2 6))))
+    (is (= '(1 2 4 3 2 6) (r-dedupe '(1 2 2 2 4 3 2 2 6))))
+    (is (= '(1 2 4 3 2 6) (r-dedupe '(1 1 2 2 4 3 2 6))))
+    (is (= '(1 2 4 3 2 6) (r-dedupe '(1 2 4 3 3 2 6 6 6))))))

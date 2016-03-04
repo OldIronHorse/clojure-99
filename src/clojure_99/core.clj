@@ -107,3 +107,18 @@
   "Flatten a nested list (functional implementation)."
   [l]
   (reverse (do-f-flatten l)))
+
+(defn r-dedupe
+  "Remove consecutive duplicates from a list (recursive implementation)."
+  [l]
+  (loop
+    [l' l
+     acc '()]
+    (if
+      (empty? l')
+      (reverse acc)
+      (if
+        (= (first acc) (first l'))
+        (recur (rest l') acc)
+        (recur (rest l') (cons (first l') acc))))))
+
