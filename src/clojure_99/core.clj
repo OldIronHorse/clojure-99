@@ -173,3 +173,16 @@
   [l]
   (flatten
     (map #(if (seq? %1) (repeat (first %1) (last %1)) %1) l)))
+
+(defn dmrl-encode
+  "Directly modified run-length encode a list."
+  [l]
+  (reverse
+    (reduce
+      (fn [acc x]
+        (if 
+          (= x (last (first acc)))
+          (cons (list (inc (ffirst acc)) x) (rest acc))
+          (cons (list 1 x) acc)))
+      '()
+      l)))

@@ -215,3 +215,12 @@
       '(\a \a \a \a \b \c \c \a \a \d \e \e \e \e)
       (mrl-decode '((4 \a) \b (2 \c) (2 \a) \d (4 \e)))))))
 
+(deftest p13
+  "Direct modified run-length encode a list."
+  (testing "dmrl-encode"
+    (is (= '() (dmrl-encode '())))
+    (is (= '(\a) (dmrl-encode '(\a))))
+    (is (= 
+      '((4 \a) \b (2 \c) (2 \a) \d (4 \e))
+      (dmrl-encode '(\a \a \a \a \b \c \c \a \a \d \e \e \e \e))))))
+      
