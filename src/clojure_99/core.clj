@@ -157,3 +157,8 @@
           (cons (list x) acc)))
       '()
       l)))
+
+(defn rl-encode
+  "Run-length encode a list."
+  [l]
+  (map #(list (count %1) (first %1)) (f-pack l)))

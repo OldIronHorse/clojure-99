@@ -187,3 +187,12 @@
     (is (=
       '((1 1 1 1) (2) (3 3) (1 1) (4) (5 5 5 5))
       (f-pack '(1 1 1 1 2 3 3 1 1 4 5 5 5 5))))))
+
+(deftest p10
+  "Run-length encode a list."
+  (testing "rl-encode"
+    (is (= '() (rl-encode '())))
+    (is (= '((1 \a)) (rl-encode '(\a))))
+    (is (= 
+      '((4 \a) (1 \b) (2 \c) (2 \a) (1 \d)(4 \e))
+      (rl-encode '(\a \a \a \a \b \c \c \a \a \d \e \e \e \e))))))
