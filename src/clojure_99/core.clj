@@ -222,3 +222,8 @@
     (filter
       #(not (= 0 (rem (first %1) k)))
       (map list (rest (range)) l))))
+
+(defn my-split
+  "Split a list into 2 parts. The length of the first part is specified."
+  [n l]
+  (list (take n l) (drop n l)))

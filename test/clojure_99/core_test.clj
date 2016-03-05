@@ -258,3 +258,12 @@
       '(\a \b \d \e \g \h)
       (r-drop-every 3 '(\a \b \c \d \e \f \g \h))))
     (is (= '() (r-drop-every 1 '(1 2 3 4 5 6 7 8 ))))))
+
+(deftest p17
+  "Split a list into 2 parts. The length of the first part is specified."
+  (testing "my-split"
+    (is (= '(() ()) (my-split 3 '())))
+    (is (= '((\a \b) ()) (my-split 3 '(\a \b))))
+    (is (= '((\a \b \c) ()) (my-split 3 '(\a \b \c))))
+    (is (= '((\a \b \c) (\d)) (my-split 3 '(\a \b \c \d))))
+    (is (= '(() (\a \b \c)) (my-split 0 '(\a \b \c))))))
