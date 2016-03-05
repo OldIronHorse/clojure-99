@@ -210,7 +210,7 @@
       (empty? l')
       (reverse acc)
       (if
-        (= 0 (rem i k))
+        (zero? (rem i k))
         (recur (inc i) (rest l') acc)
         (recur (inc i) (rest l') (cons (first l') acc))))))
 
@@ -220,7 +220,7 @@
   (map
     last
     (filter
-      #(not (= 0 (rem (first %1) k)))
+      #(not (zero? (rem (first %1) k)))
       (map list (rest (range)) l))))
 
 (defn my-split
