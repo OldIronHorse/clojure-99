@@ -309,3 +309,10 @@
     (is (= '(\a \n) (insert-at 5 \n '(\a))))
     (is (= '(\a \b \n \c \d) (insert-at 3 \n '(\a \b \c \d))))
     (is (= '(\n \a \b \c \d) (insert-at 1 \n '(\a \b \c \d))))))
+
+(deftest p22
+  "Generate all the integers between 2 values (inclusive)."
+  (testing "my-range"
+    (is (= '(4 5 6 7 8 9) (my-range 4 9)))
+    (is (= '(9 8 7 6 5 4) (my-range 9 4)))))
+

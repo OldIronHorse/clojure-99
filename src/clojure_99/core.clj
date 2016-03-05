@@ -249,3 +249,10 @@
 (defn insert-at
   [k v l]
   (concat (take (dec k) l) (cons v (drop (dec k) l))))
+
+(defn my-range
+  [start end]
+  (if
+    (< start end)
+    (range start (inc end))
+    (range start (dec end) -1)))
