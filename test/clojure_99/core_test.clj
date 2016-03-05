@@ -231,3 +231,9 @@
     (is (= '(1 1) (duplicate '(1))))
     (is (= '(1 1 2 2 3 3 4 4) (duplicate '(1 2 3 4))))))
       
+(deftest p15
+  "Replicate the elements of a list a given number of times."
+  (testing "my-replicate"
+    (is (= '() (my-replicate 3 '())))
+    (is (= '() (my-replicate 0 '(1 2 3 4))))
+    (is (= '(1 1 1 2 2 2 3 3 3 4 4 4) (my-replicate 3 '(1 2 3 4))))))

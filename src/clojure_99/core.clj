@@ -193,3 +193,8 @@
   "Duplicate the elements in a list."
   [l]
   (reduce (fn [acc x] (concat acc (repeat 2 x))) '() l))
+
+(defn my-replicate
+  "Replicate the elements of list a given number of times."
+  [n l]
+  (reduce (fn [acc x] (concat acc (repeat n x))) '() l))
