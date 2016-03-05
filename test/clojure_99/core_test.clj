@@ -301,3 +301,11 @@
     (is (= '(\b \c \d) (remove-at 1 '(\a \b \c \d))))
     (is (= '(\a \b \c \d) (remove-at 0 '(\a \b \c \d))))
     (is (= '(\a \b \c \d) (remove-at 6 '(\a \b \c \d))))))
+
+(deftest p21
+  "Insert an element at the specified (1-based) index."
+  (testing "insert-at"
+    (is (= '(\n) (insert-at 5 \n '())))
+    (is (= '(\a \n) (insert-at 5 \n '(\a))))
+    (is (= '(\a \b \n \c \d) (insert-at 3 \n '(\a \b \c \d))))
+    (is (= '(\n \a \b \c \d) (insert-at 1 \n '(\a \b \c \d))))))

@@ -245,3 +245,7 @@
 (defn remove-at
   [k l]
   (concat (take (dec k) l) (drop k l)))
+
+(defn insert-at
+  [k v l]
+  (concat (take (dec k) l) (cons v (drop (dec k) l))))
