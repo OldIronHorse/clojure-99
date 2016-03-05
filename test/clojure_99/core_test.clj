@@ -237,3 +237,24 @@
     (is (= '() (my-replicate 3 '())))
     (is (= '() (my-replicate 0 '(1 2 3 4))))
     (is (= '(1 1 1 2 2 2 3 3 3 4 4 4) (my-replicate 3 '(1 2 3 4))))))
+
+(deftest p16
+  "Drop every kth element of a list (1-base index)."
+  (testing "f-drop-every"
+    (is (= '() (f-drop-every 3 '())))
+    (is (= '(1 2 3 4) (f-drop-every 7 '(1 2 3 4))))
+    (is (= '(1 2 4 5 7 8) (f-drop-every 3 '(1 2 3 4 5 6 7 8 9))))
+    (is (= '(1 2 4 5 7 8) (f-drop-every 3 '(1 2 3 4 5 6 7 8 ))))
+    (is (=
+      '(\a \b \d \e \g \h)
+      (f-drop-every 3 '(\a \b \c \d \e \f \g \h))))
+    (is (= '() (f-drop-every 1 '(1 2 3 4 5 6 7 8 )))))
+  (testing "r-drop-every"
+    (is (= '() (r-drop-every 3 '())))
+    (is (= '(1 2 3 4) (r-drop-every 7 '(1 2 3 4))))
+    (is (= '(1 2 4 5 7 8) (r-drop-every 3 '(1 2 3 4 5 6 7 8 9))))
+    (is (= '(1 2 4 5 7 8) (r-drop-every 3 '(1 2 3 4 5 6 7 8 ))))
+    (is (=
+      '(\a \b \d \e \g \h)
+      (r-drop-every 3 '(\a \b \c \d \e \f \g \h))))
+    (is (= '() (r-drop-every 1 '(1 2 3 4 5 6 7 8 ))))))

@@ -198,3 +198,27 @@
   "Replicate the elements of list a given number of times."
   [n l]
   (reduce (fn [acc x] (concat acc (repeat n x))) '() l))
+
+(defn r-drop-every
+  "Drop every kth element from a list (1-based index)."
+  [k l]
+  (loop
+    [i 1
+     l' l
+     acc '()]
+    (if 
+      (empty? l')
+      (reverse acc)
+      (if
+        (= 0 (rem i k))
+        (recur (inc i) (rest l') acc)
+        (recur (inc i) (rest l') (cons (first l') acc))))))
+
+(defn f-drop-every
+  "Drop every kth element from a list (1-based index)."
+  [k l]
+  (map
+    last
+    (filter
+      #(not (= 0 (rem (first %1) k)))
+      (map list (rest (range)) l))))
