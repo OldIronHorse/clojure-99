@@ -277,3 +277,18 @@
     (is (=
       '(\c \d \e \f \g) 
       (slice 3 7 '(\a \b \c \d \e \f \g \h \i \k))))))
+
+(deftest p19
+  "Rotate a list n places to the left."
+  (testing "rotate"
+    (is (= '() (rotate 3 '())))
+    (is (= '(\a) (rotate 3 '(\a))))
+    (is (= '(\a \b) (rotate 3 '(\a \b))))
+    (is (= '(\a \b \c) (rotate 3 '(\a \b \c))))
+    (is (= '(\d \a \b \c) (rotate 3 '(\a \b \c \d))))
+    (is (= 
+      '(\d \e \f \g \h \a \b \c)
+      (rotate 3 '(\a \b \c \d \e \f \g \h))))
+    (is (=
+      '(\g \h \a \b \c \d \e \f)
+      (rotate -2 '(\a \b \c \d \e \f \g \h))))))

@@ -1,4 +1,5 @@
-(ns clojure-99.core)
+(ns clojure-99.core
+  (:require [clojure.math.numeric-tower :as math]))
 
 (defn my-last
   "Find the last element of a list."
@@ -232,3 +233,11 @@
   "Extract a slice from a list (inclusive, 1-based indicies)."
   [start end l]
   (take (inc (- end start)) (drop (dec start)l)))
+
+(defn rotate
+  "Rotate a list n places to the left."
+  [n l]
+  (if
+    (neg? n)
+    (concat (take-last (math/abs n) l) (drop-last (math/abs n) l))
+    (concat (drop n l) (take n l))))
