@@ -267,3 +267,13 @@
     (is (= '((\a \b \c) ()) (my-split 3 '(\a \b \c))))
     (is (= '((\a \b \c) (\d)) (my-split 3 '(\a \b \c \d))))
     (is (= '(() (\a \b \c)) (my-split 0 '(\a \b \c))))))
+
+(deftest p18
+  "Extract a slice from a list (inclusive, 1-based indicies)."
+  (testing "slice"
+    (is (= '() (slice 2 5 '())))
+    (is (= '() (slice 4 5 '(\a \b \c))))
+    (is (= '(\b \c) (slice 2 5 '(\a \b \c))))
+    (is (=
+      '(\c \d \e \f \g) 
+      (slice 3 7 '(\a \b \c \d \e \f \g \h \i \k))))))

@@ -227,3 +227,8 @@
   "Split a list into 2 parts. The length of the first part is specified."
   [n l]
   (list (take n l) (drop n l)))
+
+(defn slice
+  "Extract a slice from a list (inclusive, 1-based indicies)."
+  [start end l]
+  (take (inc (- end start)) (drop (dec start)l)))
