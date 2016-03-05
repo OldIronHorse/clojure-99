@@ -292,3 +292,12 @@
     (is (=
       '(\g \h \a \b \c \d \e \f)
       (rotate -2 '(\a \b \c \d \e \f \g \h))))))
+
+(deftest p20
+  "Remove the kth element from a list (1-based index)."
+  (testing "remove-at"
+    (is (= '() (remove-at 3 '())))
+    (is (= '(\a \c \d) (remove-at 2 '(\a \b \c \d))))
+    (is (= '(\b \c \d) (remove-at 1 '(\a \b \c \d))))
+    (is (= '(\a \b \c \d) (remove-at 0 '(\a \b \c \d))))
+    (is (= '(\a \b \c \d) (remove-at 6 '(\a \b \c \d))))))

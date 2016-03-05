@@ -241,3 +241,7 @@
     (neg? n)
     (concat (take-last (math/abs n) l) (drop-last (math/abs n) l))
     (concat (drop n l) (take n l))))
+
+(defn remove-at
+  [k l]
+  (concat (take (dec k) l) (drop k l)))
