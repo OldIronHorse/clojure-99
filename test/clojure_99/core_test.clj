@@ -370,3 +370,7 @@
     (is (not (prime? 15)))
     (is (not (prime? 16)))
     (is (not (prime? 18)))))
+
+(deftest p32
+  "Find greatest common divisor"
+  (is (= 9 (gcd 36 63))))

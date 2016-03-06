@@ -301,3 +301,10 @@
 (defn prime?
   [n]
   (empty? (drop-while #(not (zero? (rem n %1))) (range 2 (inc (/ n 2))))))
+
+(defn gcd
+  [a b]
+  (if
+    (zero? b)
+    a
+    (recur b (mod a b))))
