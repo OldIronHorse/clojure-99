@@ -381,3 +381,12 @@
   (testing "coprime"
     (is (not (coprime? 36 63)))
     (is (coprime? 35 64))))
+
+(deftest p34
+  "Calculate Euler's totient function (phi)."
+  (testing "phi"
+    (is (= 1 (phi 1)))
+    (is (= 6 (phi 9)))
+    (is (= 4 (phi 10)))
+    (is (= 16 (phi 34)))
+    (is (= 60 (phi 77)))))

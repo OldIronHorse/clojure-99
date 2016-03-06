@@ -315,3 +315,11 @@
   "Test if 2 numbers are coprime."
   [a b]
   (= 1 (gcd a b)))
+
+(defn phi
+  "Calculate Euler's totient function (phi) for n."
+  [n]
+  (if
+    (= 1 n)
+    1
+    (count (filter #(coprime? n %1) (range 1 n)))))
