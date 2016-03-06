@@ -336,3 +336,13 @@
       '((\o) (\d \e) (\d \e) (\m \n) (\a \b \c) (\f \g \h) (\i \j \k \l))
       (lsort '((\a \b \c) (\d \e) (\f \g \h) (\d \e) (\i \j \k \l)
                     (\m \n) (\o)))))))
+
+(deftest p28b
+  "Sort a list according to the frequency of the lenghts of its sublists."
+  (testing "flsort"
+    (is (= '() (flsort '())))
+    (is (=
+      '((\i \j \k \l) (\o) (\a \b \c) (\f \g \h) (\d \e) (\d \e) (\m \n))
+      (flsort '((\a \b \c) (\d \e) (\f \g \h) (\d \e) (\i \j \k \l)
+                    (\m \n) (\o)))))))
+    

@@ -281,3 +281,19 @@
   "Sort a list of lists by the length of the sublists."
   [l]
   (sort-by count l))
+
+(defn flsort
+  "Sort a list of lists by the frequency of the lengths of the sublists."
+  [l]
+  (loop
+    [sorted-by-length (sort-by count l)
+     grouped-by-length '()]
+    (let
+      [[next-group  rump] (split-with
+                          #(= (count %1) (count (first sorted-by-length)))
+                          sorted-by-length)]
+      (if
+        (empty? sorted-by-length)
+        ;(concat (sort-by count grouped-by-length))
+        (reduce concat (reverse (reduce #(cons %2 %1) '() (sort-by count grouped-by-length))))
+        (recur rump (cons next-group grouped-by-length))))))
