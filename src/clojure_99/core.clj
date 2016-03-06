@@ -299,12 +299,19 @@
         (recur rump (cons next-group grouped-by-length))))))
 
 (defn prime?
+  "Is this a prime number?"
   [n]
   (empty? (drop-while #(not (zero? (rem n %1))) (range 2 (inc (/ n 2))))))
 
 (defn gcd
+  "Find the greatest common divisor of 2 numbers (Euclid's Algorithm)."
   [a b]
   (if
     (zero? b)
     a
     (recur b (mod a b))))
+
+(defn coprime?
+  "Test if 2 numbers are coprime."
+  [a b]
+  (= 1 (gcd a b)))

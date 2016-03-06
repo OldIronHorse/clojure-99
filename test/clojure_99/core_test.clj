@@ -373,4 +373,11 @@
 
 (deftest p32
   "Find greatest common divisor"
-  (is (= 9 (gcd 36 63))))
+  (testing "gcd"
+    (is (= 9 (gcd 36 63)))))
+
+(deftest p33
+  "Test if 2 numbers are coprime"
+  (testing "coprime"
+    (is (not (coprime? 36 63)))
+    (is (coprime? 35 64))))
