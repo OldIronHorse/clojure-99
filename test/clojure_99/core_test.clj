@@ -316,3 +316,14 @@
     (is (= '(4 5 6 7 8 9) (my-range 4 9)))
     (is (= '(9 8 7 6 5 4) (my-range 9 4)))))
 
+(deftest p26
+  "Generate the list of combinations of n items from a list"
+  (testing "combinations"
+    (is (= '() (combinations 2 '())))
+    (is (= '((\a) (\b) (\c) (\d)) (combinations 1 '(\a \b \c \d))))
+    (is (=
+      '((\a \b) (\a \c) (\a \d) (\b \c) (\b \d) (\c \d))
+      (combinations 2 '(\a \b \c \d))))
+    (is (=
+      '((\a \b \c) (\a \b \d) (\a \c \d) (\b \c \d))
+      (combinations 3 '(\a \b \c \d))))))

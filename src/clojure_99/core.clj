@@ -256,3 +256,19 @@
     (< start end)
     (range start (inc end))
     (range start (dec end) -1)))
+
+(defn combinations
+  [n l]
+  (if 
+    (= 1 n)
+    (map list l)
+    (let
+      [tails (take-while
+              #(>= (count %1) (dec n))
+              (iterate rest (rest l)))
+       cs (map
+            (fn [t] (combinations (dec n) t))
+            tails)]
+      (mapcat
+        (fn [h ts] (map #(cons h %1) ts))
+        l cs))))
