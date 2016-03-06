@@ -346,3 +346,27 @@
       (flsort '((\a \b \c) (\d \e) (\f \g \h) (\d \e) (\i \j \k \l)
                     (\m \n) (\o)))))))
     
+(deftest p31
+  "Test if a number is prime."
+  (testing "prime?"
+    (is (prime? 1))
+    (is (prime? 2))
+    (is (prime? 3))
+    (is (prime? 5))
+    (is (prime? 7))
+    (is (prime? 11))
+    (is (prime? 13))
+    (is (prime? 17))
+    (is (prime? 19))
+    (is (prime? 23))
+    (is (prime? 31))
+    (is (not (prime? 4)))
+    (is (not (prime? 6)))
+    (is (not (prime? 8)))
+    (is (not (prime? 9)))
+    (is (not (prime? 10)))
+    (is (not (prime? 12)))
+    (is (not (prime? 14)))
+    (is (not (prime? 15)))
+    (is (not (prime? 16)))
+    (is (not (prime? 18)))))

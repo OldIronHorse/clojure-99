@@ -297,3 +297,7 @@
         ;(concat (sort-by count grouped-by-length))
         (reduce concat (reverse (reduce #(cons %2 %1) '() (sort-by count grouped-by-length))))
         (recur rump (cons next-group grouped-by-length))))))
+
+(defn prime?
+  [n]
+  (empty? (drop-while #(not (zero? (rem n %1))) (range 2 (inc (/ n 2))))))
