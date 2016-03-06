@@ -337,3 +337,10 @@
         [primes (filter prime? (drop 2 (range)))
          factor (first (drop-while #(not (zero? (rem n' %1))) primes))]
         (recur (/ n' factor) (cons factor factors))))))
+
+(defn prime-factors-mult
+  "Generate a numbers prime factors as a list of factor, multiplicity pairs."
+  [n]
+  (map
+    #(list (first %1) (count %1))
+    (f-pack (prime-factors n))))

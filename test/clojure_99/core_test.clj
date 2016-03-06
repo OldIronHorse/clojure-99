@@ -398,3 +398,12 @@
     (is (= '(3 3 5 7) (prime-factors 315)))
     (is (= '(2 2 2 3 3 5) (prime-factors 360)))
     (is (= '(2 2 2 2 2 3 3 3) (prime-factors 864)))))
+
+(deftest p36
+  "Generate a number's prime factors as a list of factor, multiplicity pairs"
+  (testing "prime-factors-mult"
+    (is (= '((31 1)) (prime-factors-mult 31)))
+    (is (= '((3 2) (5 1) (7 1)) (prime-factors-mult 315)))
+    (is (= '((2 3) (3 2) (5 1)) (prime-factors-mult 360)))
+    (is (= '((2 5) (3 3)) (prime-factors-mult 864)))))
+
