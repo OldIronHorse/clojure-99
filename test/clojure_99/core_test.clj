@@ -390,3 +390,11 @@
     (is (= 4 (phi 10)))
     (is (= 16 (phi 34)))
     (is (= 60 (phi 77)))))
+
+(deftest p35
+  "Generate a list of a number's prime factors in ascening order."
+  (testing "prime-factors"
+    (is (= '(31) (prime-factors 31)))
+    (is (= '(3 3 5 7) (prime-factors 315)))
+    (is (= '(2 2 2 3 3 5) (prime-factors 360)))
+    (is (= '(2 2 2 2 2 3 3 3) (prime-factors 864)))))

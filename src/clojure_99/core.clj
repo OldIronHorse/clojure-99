@@ -323,3 +323,17 @@
     (= 1 n)
     1
     (count (filter #(coprime? n %1) (range 1 n)))))
+
+(defn prime-factors
+  "Generate the list of prime factors for n in ascending order."
+  [n]
+  (loop
+    [n' n
+     factors '()]
+    (if
+      (prime? n')
+      (sort (cons n' factors))
+      (let
+        [primes (filter prime? (drop 2 (range)))
+         factor (first (drop-while #(not (zero? (rem n' %1))) primes))]
+        (recur (/ n' factor) (cons factor factors))))))
