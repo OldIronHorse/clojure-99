@@ -327,3 +327,12 @@
     (is (=
       '((\a \b \c) (\a \b \d) (\a \c \d) (\b \c \d))
       (combinations 3 '(\a \b \c \d))))))
+
+(deftest p28a
+  "Sort a list according to the length of its sublists."
+  (testing "lsort"
+    (is (= '() (lsort '())))
+    (is (=
+      '((\o) (\d \e) (\d \e) (\m \n) (\a \b \c) (\f \g \h) (\i \j \k \l))
+      (lsort '((\a \b \c) (\d \e) (\f \g \h) (\d \e) (\i \j \k \l)
+                    (\m \n) (\o)))))))

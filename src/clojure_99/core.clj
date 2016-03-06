@@ -243,14 +243,17 @@
     (concat (drop n l) (take n l))))
 
 (defn remove-at
+  "Remove the kth element from a list."
   [k l]
   (concat (take (dec k) l) (drop k l)))
 
 (defn insert-at
+  "Insert an element at the kth index of a list."
   [k v l]
   (concat (take (dec k) l) (cons v (drop (dec k) l))))
 
 (defn my-range
+  "Enumerate the integers between start and end (inclusive)."
   [start end]
   (if
     (< start end)
@@ -258,6 +261,7 @@
     (range start (dec end) -1)))
 
 (defn combinations
+  "Enumerate the combinations of n elements from a list."
   [n l]
   (if 
     (= 1 n)
@@ -272,3 +276,8 @@
       (mapcat
         (fn [h ts] (map #(cons h %1) ts))
         l cs))))
+
+(defn lsort
+  "Sort a list of lists by the length of the sublists."
+  [l]
+  (sort-by count l))
