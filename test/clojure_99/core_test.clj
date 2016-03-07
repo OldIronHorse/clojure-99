@@ -425,3 +425,8 @@
         311 313 317 331 337 347 349 353 359 367 373 379 383 389 397 401 409 419
         421 431 433 439 443)
       (primes 198 445)))))
+
+(deftest p39
+  "Find a goldbach composition for a given number."
+  (testing "goldbach"
+    (is (= '(5 23) (goldbach 28)))))

@@ -362,3 +362,10 @@
   "Generate the list of prime numbers between i and j."
   [i j]
   (filter prime? (range i j)))
+
+(defn goldbach
+  "Generate a Goldbach composition for the specified number."
+  [n]
+  (let
+    [a (first (drop-while #(not (prime? (- n %1))) (primes 2 (inc (/ n 2)))))]
+    (list a (- n a))))
