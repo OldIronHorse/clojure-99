@@ -357,3 +357,8 @@
       (map
         (fn[p] (- 1 (/ 1 p)))
         (distinct (prime-factors n))))))
+
+(defn primes
+  "Generate the list of prime numbers between i and j."
+  [i j]
+  (filter prime? (range i j)))

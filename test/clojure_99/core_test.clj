@@ -415,3 +415,13 @@
     (is (= 4 (phi' 10)))
     (is (= 16 (phi' 34)))
     (is (= 60 (phi' 77)))))
+
+(deftest p38
+  "Generate a list of prime numbers within a specified range."
+  (testing "primes"
+    (is (= '() (primes 24 29)))
+    (is (=
+      '(199 211 223 227 229 233 239 241 251 257 263 269 271 277 281 283 293 307
+        311 313 317 331 337 347 349 353 359 367 373 379 383 389 397 401 409 419
+        421 431 433 439 443)
+      (primes 198 445)))))
