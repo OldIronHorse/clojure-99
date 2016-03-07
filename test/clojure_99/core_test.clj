@@ -454,4 +454,19 @@
         ((false false) false))
       (truth-table (fn [a b] (and a (or a b))))))))
 
-
+(deftest p48
+  "Truth tables for boolean functions of arbitry arity."
+  (testing "truth-table"
+    (is (=
+      '(((true true true) true)
+        ((true true false) true)
+        ((true false true) true)
+        ((true false false) true)
+        ((false true true) true)
+        ((false true false) true)
+        ((false false true) true)
+        ((false false false) true))
+      (truth-table 
+        3
+        #(= (and %1 (or %2 %3)) (or (and %1 %2) (and %1 %3))))))))
+      

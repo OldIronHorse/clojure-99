@@ -378,8 +378,9 @@
   (map #(list %1 (goldbach %1)) (filter even? (range a (inc b)))))
   
 (defn truth-table
-  "Generate the truth table for a binary boolean function."
-  [f]
+  "Generate the truth table for a boolean function."
+  ([f] (truth-table 2 f))
+  ([arity f]
   (map
-    (fn [[a b]] (list (list a b) (f a b)))
-    (combo/selections '(true false) 2)))
+    (fn [args] (list args (apply f args)))
+    (combo/selections '(true false) arity))))
