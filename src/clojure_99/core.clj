@@ -384,3 +384,17 @@
   (map
     (fn [args] (list args (apply f args)))
     (combo/selections '(true false) arity))))
+
+(defn gray-code
+  "Generate the Gray code with the specified number of bits."
+  [n]
+  (loop
+    [code '("0" "1")]
+    (print ".")
+    (if
+      (= n (count (first code)))
+        code
+        (recur
+          (concat 
+            (map #(str "0" %1) code)
+            (map #(str "1" %1) (reverse code)))))))

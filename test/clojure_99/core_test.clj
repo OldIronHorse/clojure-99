@@ -470,3 +470,11 @@
         3
         #(= (and %1 (or %2 %3)) (or (and %1 %2) (and %1 %3))))))))
       
+(deftest p49
+  "Generate gray codes"
+  (testing "gray-code"
+    (is (= '("0" "1")) (gray-code 1)))
+    (is (= '("00" "01" "11" "10") (gray-code 2)))
+    (is (=
+      '("000" "001" "011" "010" "110" "111" "101" "100")
+      (gray-code 3))))
