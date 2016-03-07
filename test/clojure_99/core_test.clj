@@ -2,6 +2,8 @@
   (:require [clojure.test :refer :all]
             [clojure-99.core :refer :all]))
 
+;Lists
+
 (deftest p01
   "Find the last element of a list."
   (testing "my-last"
@@ -346,6 +348,8 @@
       (flsort '((\a \b \c) (\d \e) (\f \g \h) (\d \e) (\i \j \k \l)
                     (\m \n) (\o)))))))
     
+;Arithmetic
+
 (deftest p31
   "Test if a number is prime."
   (testing "prime?"
@@ -437,3 +441,17 @@
     (is (=
       '((10 (3 7)) (12 (5 7)) (14 (3 11)) (16 (3 13)) (18 (5 13)) (20 (3 17)))
       (goldbach-list 9 20)))))
+
+;Logic and Codes
+
+(deftest p46
+  "Truth tables for binary logic functions."
+  (testing "truth-table"
+    (is (=
+      '(((true true) true)
+        ((true false) true)
+        ((false true) false)
+        ((false false) false))
+      (truth-table (fn [a b] (and a (or a b))))))))
+
+

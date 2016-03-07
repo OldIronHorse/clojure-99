@@ -1,5 +1,6 @@
 (ns clojure-99.core
-  (:require [clojure.math.numeric-tower :as math]))
+  (:require [clojure.math.numeric-tower :as math]
+            [clojure.math.combinatorics :as combo]))
 
 (defn my-last
   "Find the last element of a list."
@@ -375,3 +376,10 @@
   range."
   [a b]
   (map #(list %1 (goldbach %1)) (filter even? (range a (inc b)))))
+  
+(defn truth-table
+  "Generate the truth table for a binary boolean function."
+  [f]
+  (map
+    (fn [[a b]] (list (list a b) (f a b)))
+    (combo/selections '(true false) 2)))
