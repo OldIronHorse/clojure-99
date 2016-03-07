@@ -416,7 +416,7 @@
     (is (= 16 (phi' 34)))
     (is (= 60 (phi' 77)))))
 
-(deftest p38
+(deftest p39
   "Generate a list of prime numbers within a specified range."
   (testing "primes"
     (is (= '() (primes 24 29)))
@@ -426,7 +426,14 @@
         421 431 433 439 443)
       (primes 198 445)))))
 
-(deftest p39
+(deftest p40
   "Find a goldbach composition for a given number."
   (testing "goldbach"
     (is (= '(5 23) (goldbach 28)))))
+
+(deftest p41
+  "Generate Goldbach compositions for all the even integers in a specified range."
+  (testing "goldbach-list"
+    (is (=
+      '((10 (3 7)) (12 (5 7)) (14 (3 11)) (16 (3 13)) (18 (5 13)) (20 (3 17)))
+      (goldbach-list 9 20)))))

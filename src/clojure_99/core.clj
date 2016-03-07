@@ -369,3 +369,9 @@
   (let
     [a (first (drop-while #(not (prime? (- n %1))) (primes 2 (inc (/ n 2)))))]
     (list a (- n a))))
+
+(defn goldbach-list
+  "Generate a list of Goldbach compositions for all the even numbers in a given
+  range."
+  [a b]
+  (map #(list %1 (goldbach %1)) (filter even? (range a (inc b)))))
