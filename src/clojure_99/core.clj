@@ -412,3 +412,33 @@
           code
           (map #(bit-or %1 (bit-shift-left 1 bits)) (reverse code)))
         (inc bits)))))
+
+(defn huffman-code-table-from-tree
+  ([t]
+    (huffman-code-table-from-tree t '() {}))
+  ([[v f] code table]
+    (if-not 
+      (seq? v)
+      (assoc table v (reverse code))
+      (let
+        [[lhs rhs] v
+         table' (huffman-code-table-from-tree lhs (cons 0 code) table)]
+         (huffman-code-table-from-tree rhs (cons 1 code) table')))))
+
+    
+
+(defn huffman-code-table
+  "Generate the Huffman code table for a given value/frequency list."
+  [vfl]
+  (let
+    [total (reduce (fn [acc [v f]] (+ acc f)) 0 vfl)]
+    (loop
+      [nodes (map (fn [[v f]] (list v (/ f total))) vfl)]
+      (if
+        (empty? (rest nodes))
+        (huffman-code-table-from-tree (first nodes))
+        (let
+          [[a b & nodes'] (sort-by (fn [[v f]] f) nodes)
+           [va fa] a
+           [vb fb] b]
+          (recur (cons (list (list a b) (+ fa fb)) nodes')))))  ))

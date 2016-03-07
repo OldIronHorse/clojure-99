@@ -487,3 +487,14 @@
     (is (=
       '(2r000 2r001 2r011 2r010 2r110 2r111 2r101 2r100)
       (binary-gray-code 3))))
+
+(deftest p50
+  "Generate the Huffman code table for a give list of symbol frequencies."
+  (testing "huffman-code-table"
+    (is (= 
+      {\a '(0), \b '(1 0 1), \c '(1 0 0), \d '(1 1 1), \e '(1 1 0 1),
+       \f '(1 1 0 0)}
+      (huffman-code-table
+        '((\a 45) (\b 13) (\c 12) (\d 16) (\e 9) (\f 5)))))))
+
+  
