@@ -442,3 +442,12 @@
            [va fa] a
            [vb fb] b]
           (recur (cons (list (list a b) (+ fa fb)) nodes')))))  ))
+
+(defn tree?
+  [node]
+  (if
+    (and (seq? node) (= 3 (count node)))
+    (let
+      [[v l r] node]
+      (and (or (nil? l) (tree? l)) (or (nil? r) (tree? r))))
+    false))

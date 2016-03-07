@@ -497,4 +497,19 @@
       (huffman-code-table
         '((\a 45) (\b 13) (\c 12) (\d 16) (\e 9) (\f 5)))))))
 
-  
+(deftest p54
+  "Test if an argument is a binary tree node of the form (v l r)."
+  (testing "tree?"
+    (is (not (tree? '())))
+    (is (not (tree? '(\a))))
+    (is (not (tree? '(nil))))
+    (is (not (tree? '(\a nil))))
+    (is (not (tree? '(nil nil))))
+    (is (not (tree? '(\a \b))))
+    (is (not (tree? '(\a \b nil))))
+    (is (not (tree? '(\a nil \b))))
+    (is (tree? '(\a nil nil)))
+    (is (tree? '(\a (\b nil nil) nil)))
+    (is (tree? '(\a (\b nil nil) (\c nil nil))))
+    (is (not (tree? '(\a (\b nil nil) (\c nil)))))
+    (is (tree? '(\a nil (\b nil nil))))))
