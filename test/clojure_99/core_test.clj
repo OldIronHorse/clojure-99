@@ -407,3 +407,11 @@
     (is (= '((2 3) (3 2) (5 1)) (prime-factors-mult 360)))
     (is (= '((2 5) (3 3)) (prime-factors-mult 864)))))
 
+(deftest p37
+  "Calculate Euler's totient function (phi) using efficent algorithm."
+  (testing "phi'"
+    (is (= 1 (phi' 1)))
+    (is (= 6 (phi' 9)))
+    (is (= 4 (phi' 10)))
+    (is (= 16 (phi' 34)))
+    (is (= 60 (phi' 77)))))

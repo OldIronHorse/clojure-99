@@ -344,3 +344,16 @@
   (map
     #(list (first %1) (count %1))
     (f-pack (prime-factors n))))
+
+(defn phi'
+  "Calculate Euler's totient function (phi) using a more efficient algorithm."
+  [n]
+  (if
+    (= 1 n)
+    1
+    (reduce
+      *
+      n
+      (map
+        (fn[p] (- 1 (/ 1 p)))
+        (distinct (prime-factors n))))))
