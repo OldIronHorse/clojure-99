@@ -390,7 +390,6 @@
   [n]
   (loop
     [code '("0" "1")]
-    (print ".")
     (if
       (= n (count (first code)))
         code
@@ -398,3 +397,18 @@
           (concat 
             (map #(str "0" %1) code)
             (map #(str "1" %1) (reverse code)))))))
+
+(defn binary-gray-code
+  "Generate the binary Gray code with the specified number of bits"
+  [n]
+  (loop
+    [code '(2r0 2r1)
+     bits 1]
+    (if
+      (= bits n)
+      code
+      (recur
+        (concat
+          code
+          (map #(bit-or %1 (bit-shift-left 1 bits)) (reverse code)))
+        (inc bits)))))

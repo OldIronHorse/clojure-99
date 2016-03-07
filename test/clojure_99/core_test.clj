@@ -471,10 +471,19 @@
         #(= (and %1 (or %2 %3)) (or (and %1 %2) (and %1 %3))))))))
       
 (deftest p49
-  "Generate gray codes"
+  "Generate Gray codes (strings)"
   (testing "gray-code"
     (is (= '("0" "1")) (gray-code 1)))
     (is (= '("00" "01" "11" "10") (gray-code 2)))
     (is (=
       '("000" "001" "011" "010" "110" "111" "101" "100")
       (gray-code 3))))
+
+(deftest p49a
+  "Generate Gray codes (binary)"
+  (testing "binary-gray-code"
+    (is (= '(2r0 2r1)) (binary-gray-code 1)))
+    (is (= '(2r00 2r01 2r11 2r10) (binary-gray-code 2)))
+    (is (=
+      '(2r000 2r001 2r011 2r010 2r110 2r111 2r101 2r100)
+      (binary-gray-code 3))))
