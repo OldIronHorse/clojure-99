@@ -51,3 +51,13 @@
     (is (= true ((flip >) 7 8)))
     (is (= 4 ((flip quot) 2 8)))
     (is (= [1 2 3] ((flip take) [1 2 3 4 5] 3)))))
+
+(deftest q49
+  "split sequence at index"
+  (testing "vector"
+    (is (= [[1 2 3] [4 5 6]] (my-split-at 3 [1 2 3 4 5 6])))
+    (is (= [[:a] [:b :c :d]] (my-split-at 1 [:a :b :c :d]))))
+  (testing "vector of vectors"
+    (is (=
+      [[[1 2] [3 4]] [[5 6]]]
+      (my-split-at 2 [[1 2] [3 4] [5 6]])))))

@@ -26,3 +26,7 @@
   [f]
   #(f %2 %1))
 
+(defn my-split-at
+  [n l]
+  (list (take n l) (drop n l)))
+
