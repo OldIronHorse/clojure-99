@@ -30,3 +30,16 @@
     (is (=
       '((0 5) (1 6) (2 7) (3 8) (4 9))
       (reverse-interleave (range 10) 5)))))
+
+(deftest q44
+  "rotate a list"
+  (testing "rotate left"
+    (is (= '(3 4 5 1 2) (rotate 2 '(1 2 3 4 5)))))
+  (testing "rotate right"
+    (is (= '(4 5 1 2 3) (rotate -2 '(1 2 3 4 5)))))
+  (testing "rotate more that length"
+    (is (= '(2 3 4 5 1) (rotate 6 '(1 2 3 4 5)))))
+  (testing "symbols"
+    (is (= '(:b :c :a) (rotate 1 '(:a :b :c)))))
+  (testing "over rotate right"
+    (is (= '(:c :a :b) (rotate -4 '(:a :b :c))))))

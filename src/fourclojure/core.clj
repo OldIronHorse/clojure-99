@@ -13,3 +13,13 @@
           (if (empty? (drop n l'))
             (reverse acc)
             (recur (drop n l') (cons (drop n l') acc))))))
+
+(defn rotate
+  [n l]
+  (if (neg? n)
+    (let
+      [n' (+ (count l) (rem n (count l)))]
+      (concat (drop n' l) (take n' l)))
+    (let
+      [n' (rem n (count l))]
+      (concat (drop n' l) (take n' l)))))
