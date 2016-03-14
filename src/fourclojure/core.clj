@@ -21,3 +21,8 @@
           (+ (count l) (rem n (count l)))
           (rem n (count l)))]
     (concat (drop n' l) (take n' l))))
+
+(defn flip
+  [f]
+  #(f %2 %1))
+

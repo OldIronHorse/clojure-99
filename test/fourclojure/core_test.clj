@@ -43,3 +43,11 @@
     (is (= '(:b :c :a) (rotate 1 '(:a :b :c)))))
   (testing "over rotate right"
     (is (= '(:c :a :b) (rotate -4 '(:a :b :c))))))
+
+(deftest q46
+  "flip arguments"
+  (testing "2 arguments"
+    (is (= 3 ((flip nth) 2 [1 2 3 4 5])))
+    (is (= true ((flip >) 7 8)))
+    (is (= 4 ((flip quot) 2 8)))
+    (is (= [1 2 3] ((flip take) [1 2 3 4 5] 3)))))
