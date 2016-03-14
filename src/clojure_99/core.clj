@@ -451,3 +451,10 @@
       [[v l r] node]
       (and (or (nil? l) (tree? l)) (or (nil? r) (tree? r))))
     false))
+
+(defn map-tree?
+  [node]
+  (let
+    [l (:left node)
+     r (:right node)]
+    (and (or (nil? l) (map-tree? l)) (or (nil? r) (map-tree? r)))))

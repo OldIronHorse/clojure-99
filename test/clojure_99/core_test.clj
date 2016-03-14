@@ -497,7 +497,9 @@
       (huffman-code-table
         '((\a 45) (\b 13) (\c 12) (\d 16) (\e 9) (\f 5)))))))
 
-(deftest p54
+;Binary Trees
+
+(deftest p54a
   "Test if an argument is a binary tree node of the form (v l r)."
   (testing "tree?"
     (is (not (tree? '())))
@@ -513,3 +515,35 @@
     (is (tree? '(\a (\b nil nil) (\c nil nil))))
     (is (not (tree? '(\a (\b nil nil) (\c nil)))))
     (is (tree? '(\a nil (\b nil nil))))))
+
+(comment
+  "In practice I think it might be better to use a 
+  {:value v, :left l, :right r} form."
+(deftest p54b
+  "Test if an argument is a binary tree node of the form 
+  {:left l, :right r}."
+  (testing "map-tree?"
+    (is (not (map-tree? {})))
+    (is (not (map-tree? {:left \a})))
+    (is (not (map-tree? {:left nil})))
+    (is (not (map-tree? {:right \a})))
+    (is (not (map-tree? {:right nil})))
+    (is (not (map-tree? {:left \a, :right nil})))
+    (is (map-tree? {:left nil, :right nil}))
+    (is (not (map-tree? {:value \a, :left \b})))
+    (is (not (map-tree? {:value \a, :left \b, :right nil})))
+    (is (not (map-tree? {:value \a, :left nil, :right \b})))
+    (is (map-tree? {:value \a, :left nil, :right nil}))
+    (is (map-tree? {:value \a, 
+                :left {:value \b, :left nil, :right nil},
+                :right nil}))
+    (is (map-tree? {:value \a,
+                :left {:value \b, :left nil, :right nil},
+                :right {:value \c, :left nil, :right nil}}))
+    (is (not (map-tree? {:value \a, 
+                     :left {:value \b, :left nil, :right nil}
+                     :right {:value \c, :left nil}})))
+    (is (map-tree? {:value \a,
+                :left nil, 
+                :right {:value \b, :left nil, :right nil}}))))
+)
