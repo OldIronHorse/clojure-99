@@ -2,7 +2,7 @@
 
 (defn my-flatten
   [l]
-  (filter (complement sequential?) (tree-seq sequential? seq l)))
+  (remove sequential? (tree-seq sequential? seq l)))
 
 (defn reverse-interleave
   [l n]
