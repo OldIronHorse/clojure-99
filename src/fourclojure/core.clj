@@ -16,10 +16,8 @@
 
 (defn rotate
   [n l]
-  (if (neg? n)
-    (let
-      [n' (+ (count l) (rem n (count l)))]
-      (concat (drop n' l) (take n' l)))
-    (let
-      [n' (rem n (count l))]
-      (concat (drop n' l) (take n' l)))))
+  (let
+    [n' (if (neg? n)
+          (+ (count l) (rem n (count l)))
+          (rem n (count l)))]
+    (concat (drop n' l) (take n' l))))
