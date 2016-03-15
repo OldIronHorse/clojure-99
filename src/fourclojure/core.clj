@@ -51,10 +51,25 @@
       (reverse
         (sort-by 
           count
-          (filter #(> (count %) 1)
+          (filter 
+            #(> (count %) 1)
             (reduce
               (fn [[a & acc] x] (if (= (inc (first a)) x)
                             (cons (cons x  a) acc)
                             (cons (list x) (cons a acc))))
               [[l]]
               ls)))))))
+
+(defn my-partition
+  [n [l & ls]]
+  (reverse
+    (map
+      reverse
+      (filter
+        #(= n (count %))
+        (reduce
+          (fn [[a & as] x] (if (= (count a) n)
+            (cons [x] (cons a as))
+            (cons (cons x a) as)))
+          [[l]]
+          ls)))))
