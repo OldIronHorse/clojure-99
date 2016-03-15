@@ -61,3 +61,18 @@
     (is (=
       [[[1 2] [3 4]] [[5 6]]]
       (my-split-at 2 [[1 2] [3 4] [5 6]])))))
+
+(deftest p50
+  "split-by type"
+  (testing "integer and symbol"
+    (is (=
+      #{[1 2 3] [:a :b :c]}
+      (split-by-type [1 :a 2 :b 3 :c]))))
+  (testing "symbol and string"
+    (is (=
+      #{[:a :b] ["foo" "bar"]}
+      (split-by-type [:a "foo" "bar" :b]))))
+  (testing "list, integer and symbol"
+    (is (=
+      #{[[1 2] [3 4]] [:a :b] [5 6]}
+      (split-by-type [[1 2] :a [3 4] 5 6 :b])))))

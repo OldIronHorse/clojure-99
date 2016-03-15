@@ -30,3 +30,15 @@
   [n l]
   (list (take n l) (drop n l)))
 
+(defn split-by-type
+  [l]
+  (let
+    [types (set (map type l))
+     typed-list (map #(list % (type %)) l)]
+    (into #{}
+      (map
+        (fn [t]
+          (map
+            (fn [[v' t'']] v')
+            (filter (fn [[v t']] (= t t')) typed-list))) 
+        types))))
