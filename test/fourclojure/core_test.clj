@@ -76,3 +76,11 @@
     (is (=
       #{[[1 2] [3 4]] [:a :b] [5 6]}
       (split-by-type [[1 2] :a [3 4] 5 6 :b])))))
+
+(deftest p53
+  "longest increasing sub sequence"
+  (testing "longest-sebseq"
+    (is (= [0 1 2 3] (longest-subseq [1 0 1 2 3 0 4 5 6])))
+    (is (= [5 6] (longest-subseq [5 6 1 3 2 7])))
+    (is (= [3 4 5] (longest-subseq [2 3 3 4 5])))
+    (is (= [] (longest-subseq [7 6 5 4])))))

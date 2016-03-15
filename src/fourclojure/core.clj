@@ -35,10 +35,26 @@
   (let
     [types (set (map type l))
      typed-list (map #(list % (type %)) l)]
-    (into #{}
+    ;(into #{}
+    (set
       (map
         (fn [t]
           (map
             (fn [[v' t'']] v')
             (filter (fn [[v t']] (= t t')) typed-list))) 
         types))))
+
+(defn longest-subseq
+  [[l & ls]]
+  (reverse
+    (first
+      (reverse
+        (sort-by 
+          count
+          (filter #(> (count %) 1)
+            (reduce
+              (fn [[a & acc] x] (if (= (inc (first a)) x)
+                            (cons (cons x  a) acc)
+                            (cons (list x) (cons a acc))))
+              [[l]]
+              ls)))))))
