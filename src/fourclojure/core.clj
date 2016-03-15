@@ -83,3 +83,17 @@
         (assoc a x 1)))
     {}
     l))
+
+(defn my-distinct
+  [l]
+  (loop
+    [l' l
+     acc '()]
+    (if (empty? l')
+      (reverse acc)
+      (recur
+        (remove
+          #(= % (first l'))
+          (rest l'))
+        (cons (first l') acc)))))
+     

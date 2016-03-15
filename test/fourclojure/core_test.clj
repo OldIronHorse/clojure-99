@@ -107,3 +107,15 @@
     (is (= {:a 2, :b 3} (occurences [:b :a :b :a :b]))))
   (testing "subvectors"
     (is (= {[1 2] 1, [1 3] 2} (occurences '([1 2] [1 3] [1 3]))))))
+
+(deftest p56
+  "find distinct items (maintain ordering)"
+  (testing "empty sequence"
+    (is (= '() (my-distinct []))))
+  (testing "nubmers"
+    (is (= (range 50) (my-distinct (range 50))))
+    (is (= [1 2 3 4] (my-distinct [1 2 1 3 1 2 4]))))
+  (testing "keys"
+    (is (= [:a :b :c] (my-distinct [:a :a :b :b :c :c]))))
+  (testing "sub vectors"
+    (is (= '([2 4] [1 2] [1 3])))))
