@@ -73,3 +73,13 @@
             (cons (cons x a) as)))
           [[l]]
           ls)))))
+
+(defn occurences
+  [l]
+  (reduce
+    (fn [a x]
+      (if (contains? a x)
+        (update a x inc)
+        (assoc a x 1)))
+    {}
+    l))

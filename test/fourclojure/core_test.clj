@@ -96,3 +96,14 @@
     (is (= '((0 1) (2 3) (4 5) (6 7)) (my-partition 2 (range 8)))))
   (testing "trailing elements"
     (is (= '((0 1 2) (3 4 5)) (my-partition 3 (range 8))))))
+
+(deftest p55
+  "Count occurences"
+  (testing "empty sequence"
+    (is (= {} (occurences []))))
+  (testing "numbers"
+    (is (= {1 4, 2 2, 3 1} (occurences [1 1 2 3 2 1 1]))))
+  (testing "keys"
+    (is (= {:a 2, :b 3} (occurences [:b :a :b :a :b]))))
+  (testing "subvectors"
+    (is (= {[1 2] 1, [1 3] 2} (occurences '([1 2] [1 3] [1 3]))))))
