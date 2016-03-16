@@ -112,10 +112,19 @@
   "find distinct items (maintain ordering)"
   (testing "empty sequence"
     (is (= '() (my-distinct []))))
-  (testing "nubmers"
+  (testing "numbers"
     (is (= (range 50) (my-distinct (range 50))))
     (is (= [1 2 3 4] (my-distinct [1 2 1 3 1 2 4]))))
   (testing "keys"
     (is (= [:a :b :c] (my-distinct [:a :a :b :b :c :c]))))
   (testing "sub vectors"
-    (is (= '([2 4] [1 2] [1 3])))))
+    (is (= '([2 4] [1 2] [1 3]) (my-distinct '([2 4] [1 2] [1 3] [1 3]))))))
+
+(deftest p58
+  "function composition"
+  (is (= [3 2 1] ((my-comp rest reverse) [1 2 3 4])))
+  (is (= 5 ((my-comp (partial + 3) second) [1 2 3 4])))
+  (is (= true ((my-comp zero? #(mod % 8) +) 3 5 7 9)))
+  (is (=
+    "HELLO"
+    ((my-comp #(.toUpperCase %) #(apply str %) take) 5 "hello world"))))

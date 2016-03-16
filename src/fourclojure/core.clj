@@ -96,4 +96,12 @@
           #(= % (first l'))
           (rest l'))
         (cons (first l') acc)))))
-     
+
+(defn my-comp
+  [& fs]
+  (fn
+    [& args]
+    (reduce 
+      (fn [result f] (f result))
+      (apply (last fs) args)
+      (rest (reverse fs)))))
