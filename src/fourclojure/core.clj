@@ -113,3 +113,11 @@
     (map
       #(apply % args)
       fns)))
+
+(defn my-reductions
+  ([f [l & ls]]
+    (my-reductions f l ls))
+  ([f a [l & ls]]
+    (if (nil? ls)
+      (cons a (list (f a l)))
+      (cons a (lazy-seq (my-reductions f (f a l) ls))))))

@@ -135,3 +135,9 @@
     (is (= [21 6 1] ((my-juxt + max min) 2 3 5 1 6 4)))
     (is (= ["HELLO" 5] ((my-juxt #(.toUpperCase %) count) "hello")))
     (is (= [2 6 4] ((my-juxt :a :c :b) {:a 2, :b 4, :c 6, :d 8 :e 10})))))
+
+(deftest p60-sequence-reductions
+  (testing "my-reductions"
+    (is (= [0 1 3 6 10] (take 5 (my-reductions + (range)))))
+    (is (= [[1] [1 2] [1 2 3] [1 2 3 4]] (my-reductions conj [1] [2 3 4])))
+    (is (= 120 (reduce * 2 [3 4 5]) (last (my-reductions * 2 [3 4 5]))))))
