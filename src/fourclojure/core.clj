@@ -105,3 +105,11 @@
       (fn [result f] (f result))
       (apply (last fs) args)
       (rest (reverse fs)))))
+
+(defn my-juxt
+  [& fns]
+  (fn
+    [& args]
+    (map
+      #(apply % args)
+      fns)))
