@@ -125,3 +125,12 @@
 (defn my-iterate
   [f x]
   (cons x (lazy-seq (my-iterate f (f x)))))
+
+(defn my-group-by
+  [f l]
+  (reduce
+    (fn [acc [k v]]
+      (assoc acc k (cons v (acc k))))
+      ;(update acc k conj v)) ;Clojure 1.7+
+    {}
+    (reverse (map #(list (f %) %) l))))
