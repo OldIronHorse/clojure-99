@@ -121,3 +121,7 @@
     (if (nil? ls)
       (cons a (list (f a l)))
       (cons a (lazy-seq (my-reductions f (f a l) ls))))))
+
+(defn my-iterate
+  [f x]
+  (cons x (lazy-seq (my-iterate f (f x)))))
