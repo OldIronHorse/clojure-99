@@ -170,8 +170,9 @@
   (is (= [2 3 5 7 11] (primes 5)))
   (is (= 541 (last (primes 100)))))
 
-(deftest p68-merge-with
-  (is (= {:a 4, :b 6, :c 20} (my-merge-with * {:a 2, :b 3, :c 4} {:a 2} {:b 2} {:c 5})))
+(deftest p69-merge-with
+  (is (= {:a 4, :b 6, :c 20} 
+    (my-merge-with * {:a 2, :b 3, :c 4} {:a 2} {:b 2} {:c 5})))
   (is (= {1 7, 2 10, 3 15} (my-merge-with - {1 10, 2 20} {1 3, 2 10, 3 15})))
   (is (=
     {:a [3 4 5], :b [6 7], :c [8 9]}
@@ -179,3 +180,12 @@
   (is (=
     {:a [3 4 5], :b [6 7], :c [8 9]}
     (my-merge-with concat {:a [3], :b [6]} {:a [4 5], :c [8 9]} {:b [7]}))))
+    
+(deftest p70-word-sorting
+  (is (= ["a" "day" "Have" "nice"] (sort-words "Have a nice day.")))
+  (is (=
+    ["a" "Clojure" "fun" "is" "language"]
+    (sort-words "Clojure is a fun language!")))
+  (is (=
+    ["fall" "follies" "foolish" "Fools" "for"]
+    (sort-words "Fools fall for foolish follies."))))

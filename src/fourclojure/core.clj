@@ -173,3 +173,9 @@
         m))
     {}
     ms))
+
+;(require '[clojure.string :as str])
+
+(defn sort-words
+  [s]
+  (sort-by clojure.string/lower-case (clojure.string/split s #"[^a-zA-Z]")))
