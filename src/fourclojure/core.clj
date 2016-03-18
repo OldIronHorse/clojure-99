@@ -182,24 +182,24 @@
 
 (defn tic-tac-toe-winner
   [rows]
-  (defn winning-line
+  (defn winning-lines
     [lines]
-    (first  (for
-        [line lines
-         :when (not= :e (first line))
-         :when (apply = line)]
-        line)))
-
+    (map
+      (fn [[w line]] line)
+      (filter
+        (fn [[w line]] (and w (not= :e (first line))))
+        (map
+          list
+          (map #(apply = %) lines)
+          lines))))
   (let
-    [winning-row (winning-line rows)
-     cols (for [n (range 3)] (for [row rows] (row n)))
-     winning-col (winning-line cols)]
-  (cond
-    (and
-      (not= :e ((rows 0) 2))
-      (= ((rows 0) 2) ((rows 1) 1) ((rows 2) 0))) ((rows 0) 2)
-    (and
-      (not= :e ((rows 0) 0))
-      (= ((rows 0) 0) ((rows 1) 1) ((rows 2) 2))) ((rows 0) 0)
-    (seq winning-row) (first winning-row)
-    (seq winning-col) (first winning-col))))
+    [cols (apply mapv vector rows)]
+    (cond
+      (seq (winning-lines rows)) (ffirst (winning-lines rows))
+      (seq (winning-lines cols)) (ffirst (winning-lines cols))
+      (and
+        (not= :e ((rows 0) 2))
+        (= ((rows 0) 2) ((rows 1) 1) ((rows 2) 0))) ((rows 1) 1)
+      (and
+        (not= :e ((rows 0) 0))
+        (= ((rows 0) 0) ((rows 1) 1) ((rows 2) 2))) ((rows 1) 1))))
