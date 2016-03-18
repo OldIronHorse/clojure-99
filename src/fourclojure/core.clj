@@ -158,3 +158,18 @@
             #(not (zero? (rem x %1)))
             (range 2 (inc (/ x 2))))))
       (drop 2 (range)))))
+
+(defn my-merge-with
+  [f & ms]
+  (reduce
+    (fn [acc m] 
+      (reduce
+        (fn [acc' [k v]]
+          (if (contains? acc' k)
+            (update acc' k f v)
+            ;< Clojure 1.7(assoc acc' k (f (acc' k) v))
+            (assoc acc' k v)))
+        acc
+        m))
+    {}
+    ms))
