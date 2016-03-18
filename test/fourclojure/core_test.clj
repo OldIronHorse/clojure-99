@@ -189,3 +189,32 @@
   (is (=
     ["fall" "follies" "foolish" "Fools" "for"]
     (sort-words "Fools fall for foolish follies."))))
+
+(deftest p73-tic-tac-toe
+  (is (= nil (tic-tac-toe-winner [[:e :e :e]
+                                  [:e :e :e]
+                                  [:e :e :e]])))
+
+  (is (= :x (tic-tac-toe-winner [[:x :e :o]
+                                 [:x :e :e]
+                                 [:x :e :o]])))
+
+  (is (= :o (tic-tac-toe-winner [[:e :x :e]
+                                 [:o :o :o]
+                                 [:x :e :x]])))
+
+  (is (= nil (tic-tac-toe-winner [[:x :e :o]
+                                  [:x :x :e]
+                                  [:o :x :o]])))
+
+  (is (= :x (tic-tac-toe-winner [[:x :e :e]
+                                 [:o :x :e]
+                                 [:o :e :x]])))
+
+  (is (= :o (tic-tac-toe-winner [[:x :e :o]
+                                 [:x :o :e]
+                                 [:o :e :x]])))
+
+  (is (= nil (tic-tac-toe-winner [[:x :o :x]
+                                  [:x :o :x]
+                                  [:o :x :o]]))))

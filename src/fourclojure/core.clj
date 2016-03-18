@@ -179,3 +179,27 @@
 (defn sort-words
   [s]
   (sort-by clojure.string/lower-case (clojure.string/split s #"[^a-zA-Z]")))
+
+(defn tic-tac-toe-winner
+  [rows]
+  (defn winning-line
+    [lines]
+    (first  (for
+        [line lines
+         :when (not= :e (first line))
+         :when (apply = line)]
+        line)))
+
+  (let
+    [winning-row (winning-line rows)
+     cols (for [n (range 3)] (for [row rows] (row n)))
+     winning-col (winning-line cols)]
+  (cond
+    (and
+      (not= :e ((rows 0) 2))
+      (= ((rows 0) 2) ((rows 1) 1) ((rows 2) 0))) ((rows 0) 2)
+    (and
+      (not= :e ((rows 0) 0))
+      (= ((rows 0) 0) ((rows 1) 1) ((rows 2) 2))) ((rows 0) 0)
+    (seq winning-row) (first winning-row)
+    (seq winning-col) (first winning-col))))
