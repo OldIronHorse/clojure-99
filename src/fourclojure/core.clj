@@ -146,3 +146,15 @@
         :map)
       (= (conj (conj c 1) 2) (concat c [1 2])) :vector
       (= (conj (conj c 1) 2) (concat [2 1] c)) :list)))
+
+(defn primes
+  [n]
+  (take
+    n
+    (filter
+      (fn [x]
+        (empty?
+          (drop-while 
+            #(not (zero? (rem x %1)))
+            (range 2 (inc (/ x 2))))))
+      (drop 2 (range)))))

@@ -164,3 +164,10 @@
   (is (= :vector (coll-type [1 2 3 4 5 6])))
   (is (= :set (coll-type #{10 (rand-int 5)})))
   (is (= [:map :set :vector :list] (map coll-type [{} #{} [] ()]))))
+
+(deftest p67-n-prime-numbers
+  (is (= [2 3] (primes 2)))
+  (is (= [2 3 5 7 11] (primes 5)))
+  (is (= 541 (last (primes 100)))))
+
+
