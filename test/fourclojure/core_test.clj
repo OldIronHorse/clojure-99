@@ -157,3 +157,10 @@
     {1 [[1] [3]], 2 [[1 2] [2 3]], 3 [[1 2 3]]}))
   (is (= (my-group-by count [[1] [1 2] [3] [1 2 3] [2 3]])
     {1 [[1] [3]], 2 [[1 2] [2 3]], 3 [[1 2 3]]})))
+
+(deftest p65-identify-collection
+  (is (= :map (coll-type {:a 1, :b 2})))
+  (is (= :list (coll-type (range (rand-int 20)))))
+  (is (= :vector (coll-type [1 2 3 4 5 6])))
+  (is (= :set (coll-type #{10 (rand-int 5)})))
+  (is (= [:map :set :vector :list] (map coll-type [{} #{} [] ()]))))

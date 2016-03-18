@@ -134,3 +134,15 @@
       ;(update acc k conj v)) ;Clojure 1.7+
     {}
     (reverse (map #(list (f %) %) l))))
+
+(defn coll-type
+  [c]
+  (let
+    [f [:some-key :some-value]
+     c' (conj c f)]
+    (cond
+      (= c' (conj c' f)) (if (= f (get c' f))
+        :set
+        :map)
+      (= (conj (conj c 1) 2) (concat c [1 2])) :vector
+      (= (conj (conj c 1) 2) (concat [2 1] c)) :list)))
