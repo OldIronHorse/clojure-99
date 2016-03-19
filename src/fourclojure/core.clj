@@ -182,11 +182,6 @@
 
 (defn tic-tac-toe-winner
   [rows]
-  (defn winning-lines
-    [lines]
-    (filter
-      #(not= :e (first %))
-      (filter #(apply = %) lines)))
   (let
     [lines (cons
             (list ((rows 0) 2) ((rows 1) 1) ((rows 2) 0))
@@ -195,5 +190,4 @@
               (concat
                 rows
                 (apply mapv vector rows))))]
-    (cond
-      (seq (winning-lines lines)) (ffirst (winning-lines lines)))))
+    (ffirst (filter #(not= :e (first %)) (filter #(apply = %) lines)))))
