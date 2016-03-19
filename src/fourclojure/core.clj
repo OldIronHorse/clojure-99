@@ -184,14 +184,9 @@
   [rows]
   (defn winning-lines
     [lines]
-    (map
-      (fn [[w line]] line)
-      (filter
-        (fn [[w line]] (and w (not= :e (first line))))
-        (map
-          list
-          (map #(apply = %) lines)
-          lines))))
+    (filter
+      #(not= :e (first %))
+      (filter #(apply = %) lines)))
   (let
     [cols (apply mapv vector rows)]
     (cond
