@@ -188,13 +188,12 @@
       #(not= :e (first %))
       (filter #(apply = %) lines)))
   (let
-    [cols (apply mapv vector rows)]
+    [lines (cons
+            (list ((rows 0) 2) ((rows 1) 1) ((rows 2) 0))
+            (cons
+              (list ((rows 0) 0) ((rows 1) 1) ((rows 2) 2))
+              (concat
+                rows
+                (apply mapv vector rows))))]
     (cond
-      (seq (winning-lines rows)) (ffirst (winning-lines rows))
-      (seq (winning-lines cols)) (ffirst (winning-lines cols))
-      (and
-        (not= :e ((rows 0) 2))
-        (= ((rows 0) 2) ((rows 1) 1) ((rows 2) 0))) ((rows 1) 1)
-      (and
-        (not= :e ((rows 0) 0))
-        (= ((rows 0) 0) ((rows 1) 1) ((rows 2) 2))) ((rows 1) 1))))
+      (seq (winning-lines lines)) (ffirst (winning-lines lines)))))
