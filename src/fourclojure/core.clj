@@ -191,3 +191,33 @@
                 rows
                 (apply mapv vector rows))))]
     (ffirst (filter #(not= :e (first %)) (filter #(apply = %) lines)))))
+
+(defn gcd
+  [a b]
+  (if (zero? b)
+    a
+    (recur b (mod a b))))
+
+(defn coprime?
+  [a b]
+  (= 1 (gcd a b)))
+
+(defn phi
+  [n]
+  (if (= n 1)
+    1
+    (count (filter #(coprime? %  n) (range 1 n)))))
+
+(defn phi2
+  [n]
+  (if (= n 1)
+    1
+    (count
+      (filter
+        #(=
+          1
+          ((fn [a b]
+            (if (zero? b)
+             a
+             (recur b (mod a b)))) % n))
+      (range 1 n)))))

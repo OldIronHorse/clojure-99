@@ -218,3 +218,15 @@
   (is (= nil (tic-tac-toe-winner [[:x :o :x]
                                   [:x :o :x]
                                   [:o :x :o]]))))
+
+(deftest p75-euler's-totient
+  (is (= 1 (phi 1)))
+  (is (= (count '(1 3 7 9)) 4 (phi 10)))
+  (is (= 16 (phi 40)))
+  (is (= 60 (phi 99))))
+
+(deftest p75-euler's-totient2
+  (is (= 1 (phi2 1)))
+  (is (= (count '(1 3 7 9)) 4 (phi2 10)))
+  (is (= 16 (phi2 40)))
+  (is (= 60 (phi2 99))))
