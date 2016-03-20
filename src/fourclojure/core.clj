@@ -235,3 +235,11 @@
               (assoc acc ls (set [w]))))
           {}
           (map #(list % (sort %)) words))))))
+
+(defn my-trampoline
+  [f & args]
+  (loop
+    [f' (apply f args)]
+    (if (fn? f')
+      (recur (f'))
+      f')))
