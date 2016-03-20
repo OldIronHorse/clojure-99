@@ -230,3 +230,12 @@
   (is (= (count '(1 3 7 9)) 4 (phi2 10)))
   (is (= 16 (phi2 40)))
   (is (= 60 (phi2 99))))
+
+(deftest p77-anagram-finder
+  (is (=
+    #{#{"meat" "team" "mate"}}
+    (anagrams ["meat" "mat" "team" "mate" "eat"])))
+  (is (= 
+    #{#{"veer" "ever"} #{"lake" "kale"} #{"mite" "item"}}
+    (anagrams ["veer" "lake" "item" "kale" "mite" "ever"]))))
+

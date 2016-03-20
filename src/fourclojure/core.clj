@@ -221,3 +221,17 @@
              a
              (recur b (mod a b)))) % n))
       (range 1 n)))))
+
+(defn anagrams
+  [words]
+  (set
+    (filter
+      #(> (count %) 1)
+      (vals
+        (reduce
+          (fn [acc [w ls]]
+            (if (contains? acc ls)
+              (update acc ls #(conj % w))
+              (assoc acc ls (set [w]))))
+          {}
+          (map #(list % (sort %)) words))))))
