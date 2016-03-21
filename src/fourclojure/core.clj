@@ -243,3 +243,22 @@
     (if (fn? f')
       (recur (f'))
       f')))
+
+(defn triangle-minimal-path
+  [triangle]
+  (letfn
+    [(all-routes [[r n] depth] 
+      (if (= 1 depth)
+        (list (list (list r n))) 
+        (map
+          #(conj % (list r n)) 
+          (concat
+            (all-routes [(inc r) n] (dec depth))
+            (all-routes [(inc r) (inc n)] (dec depth))))))
+     (cost [[r n]] (((vec triangle) r) n))
+     (route-cost [route] (reduce + (map cost route)))]
+    (let
+      [routes (all-routes [0 0] (count triangle))
+       route-costs (map route-cost routes)]
+      (first (sort route-costs)))))
+  
