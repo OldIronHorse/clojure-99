@@ -244,6 +244,7 @@
       (recur (f'))
       f')))
 
+;TODO non-recursive (or at least tail-recursive) implementation.
 (defn triangle-minimal-path
   [triangle]
   (letfn
@@ -262,3 +263,8 @@
        route-costs (map route-cost routes)]
       (first (sort route-costs)))))
   
+(defn perfect?
+  [n]
+  ( =
+    n
+    (reduce + (filter #(zero? (rem n %)) (range 1 (inc (/ n 2)))))))

@@ -269,3 +269,12 @@
                           [9 9 2 4]
                          [4 6 6 7 8]
                         [5 7 3 5 1 4]))))) ; 3->4->3->2->7->1
+
+(deftest p81-perfect-numbers
+  (is (= true (perfect? 6)))
+  (is (= true (perfect? 6)))
+  (is (= false (perfect? 7)))
+  (is (= true (perfect? 496)))
+  (is (= false (perfect? 500)))
+  (is (= true (perfect? 8128))))
+
