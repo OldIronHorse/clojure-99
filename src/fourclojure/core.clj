@@ -277,16 +277,18 @@
 
 (defn differ-by-one?
   [w1 w2]
-  (if (= (count w1) (count w2))
-    (= 1 (count (filter false? (map = w1 w2))))
-    (let
-      [[w-short w-long] (sort-by count (list w1 w2))
-       w-long-combos 
-        (for
-          [n (range 0 (count w-long))
-           :let [w (concat (take n w-long) (drop (inc n) w-long))]]
-          w)]
-      (not (zero? (count (filter #(= (seq w-short) %) w-long-combos)))))))
+  (cond
+    (= (count w1) (count w2)) (= 1 (count (filter false? (map = w1 w2))))
+    (= 1 (math/abs (- (count w1) (count w2))))
+      (let
+        [[w-short w-long] (sort-by count (list w1 w2))
+         w-long-combos 
+          (for
+            [n (range 0 (count w-long))
+             :let [w (concat (take n w-long) (drop (inc n) w-long))]]
+            w)]
+        (not (zero? (count (filter #(= (seq w-short) %) w-long-combos)))))
+    :default false))
 
 (defn is-chain?
   [words]
@@ -297,4 +299,4 @@
 
 (defn word-chain?
   [words]
-  (not (zero? (count (filter #(is-chain? %) (combo/permutations words))))))
+  (not (zero? (count (filter is-chain? (combo/permutations words))))))
