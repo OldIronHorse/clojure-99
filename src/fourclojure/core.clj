@@ -1,4 +1,6 @@
-(ns fourclojure.core)
+(ns fourclojure.core
+  (:require [clojure.math.numeric-tower :as math]
+            [clojure.math.combinatorics :as combo]))
 
 (defn my-flatten
   [l]
@@ -244,6 +246,57 @@
       (recur (f'))
       f')))
 
-(defn minimal-triangle-path
- [triangle]
- nil)
+;TODO non-recursive (or at least tail-recursive) implementation.
+(defn triangle-minimal-path
+  [triangle]
+  (letfn
+    [(all-routes [[r n] depth] 
+      (if (= 1 depth)
+        (list (list (list r n))) 
+        (map
+          #(conj % (list r n)) 
+          (concat
+            (all-routes [(inc r) n] (dec depth))
+            (all-routes [(inc r) (inc n)] (dec depth))))))
+     (cost [[r n]] (((vec triangle) r) n))
+     (route-cost [route] (reduce + (map cost route)))]
+    (let
+      [routes (all-routes [0 0] (count triangle))
+       route-costs (map route-cost routes)]
+      (first (sort route-costs)))))
+  
+(defn perfect?
+  [n]
+  ( =
+    n
+    (reduce + (filter #(zero? (rem n %)) (range 1 (inc (/ n 2)))))))
+
+(defn my-intersection
+  [s1 s2]
+  (reduce (fn [i e] (if (contains? s2 e) (conj i e) i)) #{} s1))
+
+(defn differ-by-one?
+  [w1 w2]
+  (cond
+    (= (count w1) (count w2)) (= 1 (count (filter false? (map = w1 w2))))
+    (= 1 (math/abs (- (count w1) (count w2))))
+      (let
+        [[w-short w-long] (sort-by count (list w1 w2))
+         w-long-combos 
+          (for
+            [n (range 0 (count w-long))
+             :let [w (concat (take n w-long) (drop (inc n) w-long))]]
+            w)]
+        (not (zero? (count (filter #(= (seq w-short) %) w-long-combos)))))
+    :default false))
+
+(defn is-chain?
+  [words]
+  (reduce
+    (fn [acc [w1 w2]] (and acc (differ-by-one? w1 w2)))
+    true
+    (map list words (drop 1 words))))
+
+(defn word-chain?
+  [words]
+  (not (zero? (count (filter is-chain? (combo/permutations words))))))

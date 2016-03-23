@@ -254,18 +254,66 @@
        (my-odd? [x] (if (zero? x) false #(my-even? (dec x))))]
       (map (partial my-trampoline my-even?) (range 6))))))
 
-(deftest p80-mininal-triangle-path
+(deftest p80-triangle-minimal-path
   (is (=
     7
-    (minimal-triangle-path '([1]
+    (triangle-minimal-path '([1]
                             [2 4]
                            [5 1 4]
                           [2 3 4 5])))) ; 1->2->1->3
-  (is (=
+  (is (= 
     20
-    (minimal-triangle-path '([3]
+    (triangle-minimal-path '([3]
                             [2 4]
                            [1 9 3]
                           [9 9 2 4]
                          [4 6 6 7 8]
                         [5 7 3 5 1 4]))))) ; 3->4->3->2->7->1
+
+(deftest p81-perfect-numbers
+  (is (= true (perfect? 6)))
+  (is (= false (perfect? 7)))
+  (is (= true (perfect? 496)))
+  (is (= false (perfect? 500)))
+  (is (= true (perfect? 8128))))
+
+(deftest p82-set-intersection
+  (is (= (my-intersection #{0 1 2 3} #{2 3 4 5}) #{2 3}))
+  (is (= (my-intersection #{0 1 2} #{3 4 5}) #{}))
+  (is (= (my-intersection #{:a :b :c :d} #{:c :e :a :f :d}) #{:a :c :d})))
+
+(deftest p82-word-chain?
+   (is (=
+    true
+    (word-chain? #{"hat" "coat" "dog" "cat" "oat" "cot" "hot" "hog"})))
+   (is (= false (word-chain? #{"cot" "hot" "bat" "fat"})))
+   (is (= false (word-chain? #{"to" "top" "stop" "tops" "toss"})))
+   (is (= true (word-chain? #{"spout" "do" "pot" "pout" "spot" "dot"})))
+   (is (= true (word-chain? #{"share" "hares" "shares" "hare" "are"})))
+   (is (= false (word-chain? #{"share" "hares" "hare" "are"})))
+   (is (= false (word-chain? #{"share" "hares" "hare" "are"}))))
+
+(deftest p82a-differ-by-one?
+  (testing "first letter changed"
+    (is (differ-by-one? "cat" "hat")))
+  (testing "middle letter changed"
+    (is (differ-by-one? "cat" "cot")))
+  (testing "last letter changed"
+    (is (differ-by-one? "cat" "can")))
+  (testing "letter added/removed in front"
+    (is (differ-by-one? "hat" "chat")
+    (is (differ-by-one? "chat" "hat"))))
+  (testing "letter added/removed behind"
+    (is (differ-by-one? "hat" "hats"))
+    (is (differ-by-one? "hats" "hat")))
+  (testing "letter added/removed in middle"
+    (is (differ-by-one? "cot" "coat"))
+    (is (differ-by-one? "coat" "cot")))
+  (testing "two letters changed"
+    (is (not (differ-by-one? "coat" "code"))))
+  (testing "two letters added/removed"
+    (is (not (differ-by-one? "coat" "coated")))
+    (is (not (differ-by-one? "coated" "coat"))))
+  (testing "one letter changed and one added removed"
+    (is (not (differ-by-one? "coat" "boats")))
+    (is (not (differ-by-one? "boats" "coat")))))
