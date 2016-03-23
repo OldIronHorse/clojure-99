@@ -253,3 +253,19 @@
       [(my-even? [x] (if (zero? x) true #(my-odd? (dec x))))
        (my-odd? [x] (if (zero? x) false #(my-even? (dec x))))]
       (map (partial my-trampoline my-even?) (range 6))))))
+
+(deftest p80-mininal-triangle-path
+  (is (=
+    7
+    (minimal-triangle-path '([1]
+                            [2 4]
+                           [5 1 4]
+                          [2 3 4 5])))) ; 1->2->1->3
+  (is (=
+    20
+    (minimal-triangle-path '([3]
+                            [2 4]
+                           [1 9 3]
+                          [9 9 2 4]
+                         [4 6 6 7 8]
+                        [5 7 3 5 1 4]))))) ; 3->4->3->2->7->1

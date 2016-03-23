@@ -243,3 +243,7 @@
     (if (fn? f')
       (recur (f'))
       f')))
+
+(defn minimal-triangle-path
+ [triangle]
+ nil)
